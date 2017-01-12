@@ -4,6 +4,7 @@
     <persistence-unit name="NewPersistenceUnit">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>domain.PersonEntity</class>
+        <class>domain.Employee</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/tryjpa"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

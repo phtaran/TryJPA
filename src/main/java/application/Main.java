@@ -1,5 +1,6 @@
 package application;
 
+import domain.Employee;
 import domain.PersonEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -19,11 +20,12 @@ public class Main {
         EntityTransaction transaction = entityManager.getTransaction();
 
         PersonEntity personEntity = makeTestPerson();
+        Employee employee = makeEmployee();
 
         try {
             transaction.begin();
 
-            entityManager.persist(personEntity);
+            entityManager.persist(employee);
 
             transaction.commit();
         } catch (Exception e) {
@@ -35,9 +37,9 @@ public class Main {
         EntityTransaction readTransaction = entityManager.getTransaction();
         readTransaction.begin();
 
-        PersonEntity newAddedPerson = entityManager.find(PersonEntity.class, personEntity.getId());
-        if (newAddedPerson != null) {
-            System.out.println("newAddedPerson: " + newAddedPerson);
+        Employee newAddedEmployee = entityManager.find(Employee.class, employee.getId());
+        if (newAddedEmployee != null) {
+            System.out.println("newAddedPerson: " + newAddedEmployee);
         } else {
             System.out.println("cannot find newAddedPerson");
         }
@@ -54,5 +56,16 @@ public class Main {
         personEntity.setAge(RandomUtils.nextInt(10, 100));
         personEntity.setContent("content" + RandomStringUtils.random(5));
         return personEntity;
+    }
+
+    public static Employee makeEmployee() {
+        Employee employee = new Employee();
+        employee.setFirstName(RandomStringUtils.randomAlphabetic(5));
+        employee.setLastName(RandomStringUtils.randomAlphabetic(5));
+        employee.setSalary(RandomUtils.nextInt(0, 20));
+        employee.setYearsOfService(RandomUtils.nextInt(0, 20));
+        employee.setAddress(RandomUtils.nextInt(0, 100));
+
+        return employee;
     }
 }
