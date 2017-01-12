@@ -1,12 +1,12 @@
-﻿CREATE TABLE EMP_DATA
+﻿CREATE TABLE emp_data
 (
-  EMP_ID serial NOT NULL,
-  MGR_ID INTEGER,
-  YEAR_OF_SERV INTEGER,
-  CONSTRAINT pk_emp_data PRIMARY KEY (EMP_ID)
+  emp_id serial NOT NULL REFERENCES EMPLOYEE (id),
+  mgr_id integer,
+  year_of_serv integer,
+  CONSTRAINT pk_emp_data PRIMARY KEY (emp_id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE EMP_DATA
+ALTER TABLE emp_data
   OWNER TO postgres;
