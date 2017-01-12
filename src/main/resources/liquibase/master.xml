@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.1"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.1
-    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.1.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+    <property name="changelogRootPath" value="liquibase/changesets"/>
 
     <changeSet author="ph (generated)" id="1484236189166-1">
         <createTable tableName="person">
@@ -18,4 +20,8 @@
     <changeSet author="ph (generated)" id="1484236189166-2">
         <createSequence sequenceName="hibernate_sequence"/>
     </changeSet>
+
+    <include file="${changelogRootPath}/2017_01_12_create_employee.xml"/>
+    <include file="${changelogRootPath}/2017_01_12_create_employee_data.xml"/>
+
 </databaseChangeLog>
